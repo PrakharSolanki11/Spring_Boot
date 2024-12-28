@@ -2,26 +2,33 @@ package com.rays.form;
 
 import java.util.Date;
 
-public class UserForm {
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
-	private Long id;
+import com.rays.common.BaseDTO;
+import com.rays.common.BaseForm;
+import com.rays.dto.UserDTO;
 
+public class UserForm extends BaseForm {
+
+	@NotEmpty(message = "firstName is required")
 	private String firstName;
 
+	@NotEmpty(message = "lastName is required")
 	private String lastName;
 
+	@NotEmpty(message = "loginId is required")
 	private String loginId;
 
+	@NotEmpty(message = "password is required")
 	private String password;
 
+	@NotNull(message = "Date of birth is required")
 	private Date dob;
 
-	public Long getId() {
-		return id;
-	}
+	private long roleId;
 
-	public void setId(Long id) {
-		this.id = id;
+	public UserForm() {
 	}
 
 	public String getFirstName() {
@@ -62,6 +69,26 @@ public class UserForm {
 
 	public void setDob(Date dob) {
 		this.dob = dob;
+	}
+
+	public long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(long roleId) {
+		this.roleId = roleId;
+	}
+
+	@Override
+	public BaseDTO getDto() {
+		UserDTO dto = (UserDTO) initDTO(new UserDTO());
+		dto.setFirstName(firstName);
+		dto.setLastName(lastName);
+		dto.setLoginId(loginId);
+		dto.setPassword(password);
+		dto.setDob(dob);
+		dto.setRoleId(roleId);
+		return dto;
 	}
 
 }
