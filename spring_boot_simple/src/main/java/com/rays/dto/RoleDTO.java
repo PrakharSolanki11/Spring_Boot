@@ -31,6 +31,12 @@ public class RoleDTO extends BaseDTO {
 	public void setDiscription(String discription) {
 		this.discription = discription;
 	}
+
+	@Override
+	public String getValue() {
+		// TODO Auto-generated method stub
+		return name;
+	}
 	
 	
 
